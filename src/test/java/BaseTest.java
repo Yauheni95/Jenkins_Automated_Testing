@@ -11,6 +11,20 @@ public class BaseTest {
     private WebDriver driver;
     private HomePage homePage;
 
+    protected WebDriver getDriver() {
+        return driver;
+    }
+
+    protected HomePage getHomePage() {
+        return homePage;
+    }
+
+    protected void createNewProject(String name, NewItemPage.ItemTypes type) {
+        getHomePage()
+                .goToNewItemPage()
+                .createJob(name, type);
+    }
+
     @BeforeClass
     protected void setUp() {
         driver = new ChromeDriver();
@@ -27,34 +41,15 @@ public class BaseTest {
     }
 
     @BeforeMethod
+    protected void refreshAll() {
+        backToHomePage();
+        getHomePage().getProjectPanel().deleteAllProjects();
+        getHomePage().clearDescriptionArea();
+    }
+
     protected void backToHomePage() {
         getHomePage().getMutualPageContent().clickHomePageButton();
     }
 
-    @BeforeGroups("someJobsExist")
-    protected void createJobToTest() {
-        getHomePage()
-                .goToNewItemPage()
-                .createJob("Test Project", NewItemPage.ItemTypes.FREESTYLE_PROJECT);
-        backToHomePage();
-        getHomePage()
-                .goToNewItemPage()
-                .createJob("Test Project 2", NewItemPage.ItemTypes.FREESTYLE_PROJECT);
-        backToHomePage();
-    }
 
-    @AfterGroups("someJobsExist")
-    protected void deleteJob() {
-        backToHomePage();
-        getHomePage().deleteJobByName("Test Project");
-        getHomePage().deleteJobByName("Test Project 2");
-    }
-
-    protected WebDriver getDriver() {
-        return driver;
-    }
-
-    protected HomePage getHomePage() {
-        return homePage;
-    }
 }

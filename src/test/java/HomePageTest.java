@@ -1,18 +1,9 @@
 import org.testng.annotations.*;
+import pages.NewItemPage;
 
 import static org.testng.Assert.*;
 
 public class HomePageTest extends BaseTest {
-
-    @BeforeGroups(groups = "textDescriptionTest")
-    public void prepareDescriptionArea() {
-        getHomePage().clearDescriptionArea();
-    }
-
-    @AfterGroups(groups = "textDescriptionTest")
-    public void clearDescription() {
-        getHomePage().clearDescriptionArea();
-    }
 
     @Test(groups = "textDescriptionTest")
     public void testAddDescription() {
@@ -41,13 +32,15 @@ public class HomePageTest extends BaseTest {
     @Test
     public void testHomePageWithoutProjectsCreated() {
         assertTrue(getHomePage().isWelcomeMessageDisplayed());
-        assertTrue(getHomePage().getAllProjectsNames().isEmpty());
+        assertTrue(getHomePage().getProjectPanel().getAllProjectsNames().isEmpty());
     }
 
-    @Test (groups = "someJobsExist")
+    @Test
     public void testHomePageWithProjectsCreated() {
+        createNewProject("Test Project", NewItemPage.ItemTypes.FREESTYLE_PROJECT);
+        backToHomePage();
         assertFalse(getHomePage().isWelcomeMessageDisplayed());
-        assertFalse(getHomePage().getAllProjectsNames().isEmpty());
+        assertFalse(getHomePage().getProjectPanel().getAllProjectsNames().isEmpty());
     }
 
 

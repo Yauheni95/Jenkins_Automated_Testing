@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class JenkinsUtils {
-
     private static final String LOGIN = AppConfig.getUsername();
     private static final String PASSWORD = AppConfig.getPassword();
     private final static By loginField = org.openqa.selenium.By.xpath("//input[@id='j_username']");
@@ -22,4 +21,5 @@ public class JenkinsUtils {
     public static void logOut(WebDriver driver) {
         driver.findElement(logOutLink).click();
     }
+
 }

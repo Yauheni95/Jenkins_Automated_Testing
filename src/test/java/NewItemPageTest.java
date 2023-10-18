@@ -30,8 +30,10 @@ public class NewItemPageTest extends BaseTest {
      * Note that name is case-insensitive
      */
 
-    @Test(groups = "someJobsExist")
+    @Test
     public void testNameFieldIfJobWithThatNameExists() {
+        createNewProject("Test Project", NewItemPage.ItemTypes.FREESTYLE_PROJECT);
+        backToHomePage();
         NewItemPage newItemPage = getHomePage().goToNewItemPage();
         newItemPage.fillOutNameField("Test Project");
         newItemPage.clickOkButton();
@@ -48,15 +50,17 @@ public class NewItemPageTest extends BaseTest {
         assertTrue(actual.contains("is an unsafe character"));
     }
 
-    @Test(groups = "someJobsExist")
+    @Test
     public void testIfItemCopyOptionOnWithJobsExisted() {
+        createNewProject("Test Project", NewItemPage.ItemTypes.FREESTYLE_PROJECT);
+        backToHomePage();
         boolean result = getHomePage()
                 .goToNewItemPage()
                 .isItemCopyAreaDisplayed();
         assertTrue(result);
     }
 
-    @Test(dependsOnGroups = "someJobsExist")
+    @Test
     public void testIfItemCopyOptionOnWithoutJobsExisted() {
         boolean result = getHomePage()
                 .goToNewItemPage()

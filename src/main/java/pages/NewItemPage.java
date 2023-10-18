@@ -24,7 +24,6 @@ public class NewItemPage extends BasicPage {
         MULTIBRANCH_PIPELINE(By.xpath("//li[contains(@class, 'WorkflowMultiBranchProject')]")),
         ORGANIZATION_FOLDER(By.xpath("//li[contains(@class, 'OrganizationFolder')]"));
 
-
         private final By locator;
 
         ItemTypes(By locator) {

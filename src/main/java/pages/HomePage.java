@@ -3,22 +3,17 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import pages.commonElements.ProjectPanel;
 
 public class HomePage extends BasicPage {
+
+    private final ProjectPanel projectPanel;
+
     public HomePage(WebDriver driver) {
         super(driver);
+        projectPanel = new ProjectPanel(driver);
     }
 
-    private final By dropDownProjectButton = By.xpath("//button[@class='jenkins-menu-dropdown-chevron' and contains(@data-href, 'job')]");
-
-    private final By deleteProjectButton = By.xpath("//button[contains(@href,'doDelete')]");
-
-    private final By projectLink = By.xpath("//a[@class='jenkins-table__link model-link inside']");
 
     private final By DescriptionButton = By.id("description-link");
 
@@ -30,6 +25,9 @@ public class HomePage extends BasicPage {
 
     private final By welcomeJenkinsTextMessage = By.xpath("//h1[text() = 'Welcome to Jenkins!']");
 
+    public ProjectPanel getProjectPanel() {
+        return projectPanel;
+    }
 
     public BuildHistoryPage goToBuildHistoryPage() {
         clickLink("Build History");
@@ -61,35 +59,12 @@ public class HomePage extends BasicPage {
         return new JenkinsApiPage(driver);
     }
 
-    public void clickDropDownProjectButton(String projectName) {
-        new Actions(driver)
-                .moveToElement(driver.findElement(By.linkText(projectName)))
-                .moveToElement(driver.findElement(dropDownProjectButton))
-                .click()
-                .perform();
-    }
-
-    private void clickDeleteButtonInDropDownMenu() {
-        driver.findElement(deleteProjectButton).click();
-    }
-
-    public void deleteJobByName(String projectName) {
-        clickDropDownProjectButton(projectName);
-        clickDeleteButtonInDropDownMenu();
-        driver.switchTo().alert().accept();
-    }
 
     public String getDescriptionButtonText() {
         return driver.findElement(DescriptionButton).getText();
     }
 
-    public List<String> getAllProjectsNames() {
-        return driver
-                .findElements(projectLink)
-                .stream()
-                .map(WebElement::getText)
-                .collect(Collectors.toList());
-    }
+
 
     public boolean isProjectExist(String projectName) {
         return !driver.findElements(By.id("job_" + projectName)).isEmpty();
