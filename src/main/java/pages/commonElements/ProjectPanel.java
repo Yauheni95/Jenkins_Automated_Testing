@@ -62,15 +62,5 @@ public class ProjectPanel {
         }
     }
 
-    public static void main(String[] args) {
-        WebDriver driver = new ChromeDriver();
-        driver.get("http://localhost:8080/");
-        HomePage page = new HomePage(driver);
-        JenkinsUtils.logIn(driver);
-
-        page.getProjectPanel().clickDropDownProjectButton("dfs");
-        page.getProjectPanel().clickRenameButton();
-    }
-
 
 }
