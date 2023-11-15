@@ -10,11 +10,6 @@ import java.time.Duration;
 public class BaseTest {
     private WebDriver driver;
     private HomePage homePage;
-
-    protected WebDriver getDriver() {
-        return driver;
-    }
-
     protected HomePage getHomePage() {
         return homePage;
     }

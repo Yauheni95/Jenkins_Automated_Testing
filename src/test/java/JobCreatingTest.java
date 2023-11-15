@@ -18,7 +18,7 @@ public class JobCreatingTest extends BaseTest {
         int resultProjectsAmount = homePage.getProjectPanel().getAllProjectsNames().size();
         assertNotEquals(resultProjectsAmount, initProjectsAmount);
         assertTrue(homePage.isProjectExist("Test Project"));
-
-
     }
+
 }
+

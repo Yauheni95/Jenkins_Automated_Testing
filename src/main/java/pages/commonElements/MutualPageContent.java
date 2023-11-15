@@ -10,21 +10,21 @@ import java.util.stream.Collectors;
 public class MutualPageContent {
     private final WebDriver driver;
 
+    private static final By jenkinsHomePageLink = By.id("jenkins-name-icon");
+    private static final By searchBox = By.id("search-box");
+    private static final By administrativeMonitorsInfo = By.xpath("//a[@id='visible-am-button']");
+    private static final By administrativeSecurityMonitorsInfo = By.xpath("//a[@id='visible-sec-am-button']");
+    private  static final By userMenuButton = By.xpath("(//a[@class='model-link'])[1]");
+    private static final By userDropDownMenuButton = By.xpath("(//button[@class='jenkins-menu-dropdown-chevron'])[1]");
+    private static final By logOutLink = By.linkText("log out");
+    private static final By restApiLink = By.linkText("REST API");
+    private static final By jenkinsVersionDropDownButton = By.xpath("//*[@class='jenkins-button jenkins-button--tertiary jenkins_ver']");
+    private static final By searchResults = By.xpath("//div[@id='main-panel']//li");
+    private static final By searchErrorField = By.className("error");
+
     public MutualPageContent(WebDriver driver) {
         this.driver = driver;
     }
-
-    private final By jenkinsHomePageLink = By.id("jenkins-name-icon");
-    private final By searchBox = By.id("search-box");
-    private final By administrativeMonitorsInfo = By.xpath("//a[@id='visible-am-button']");
-    private final By administrativeSecurityMonitorsInfo = By.xpath("//a[@id='visible-sec-am-button']");
-    private final By userMenuButton = By.xpath("(//a[@class='model-link'])[1]");
-    private final By userDropDownMenuButton = By.xpath("(//button[@class='jenkins-menu-dropdown-chevron'])[1]");
-    private final By logOutLink = By.linkText("log out");
-    private final By restApiLink = By.linkText("REST API");
-    private final By jenkinsVersionDropDownButton = By.xpath("//*[@class='jenkins-button jenkins-button--tertiary jenkins_ver']");
-    private final By searchResults = By.xpath("//div[@id='main-panel']//li");
-    private final By searchErrorField = By.className("error");
 
     public HomePage clickHomePageButton() {
         driver.findElement(jenkinsHomePageLink).click();

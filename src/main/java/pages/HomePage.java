@@ -6,26 +6,22 @@ import org.openqa.selenium.WebDriver;
 import pages.commonElements.ProjectPanel;
 
 public class HomePage extends BasicPage {
+    private ProjectPanel projectPanel;
+    private static final By DescriptionButton = By.id("description-link");
 
-    private final ProjectPanel projectPanel;
+    private static final By textDescriptionArea = By.name("description");
+
+    private static final By descriptionArea = By.cssSelector("#description > div:nth-child(1)");
+
+    private static final By saveDescriptionButton = By.name("Submit");
+
+    private static final By welcomeJenkinsTextMessage = By.xpath("//h1[text() = 'Welcome to Jenkins!']");
 
     public HomePage(WebDriver driver) {
         super(driver);
-        projectPanel = new ProjectPanel(driver);
     }
-
-
-    private final By DescriptionButton = By.id("description-link");
-
-    private final By textDescriptionArea = By.name("description");
-
-    private final By descriptionArea = By.cssSelector("#description > div:nth-child(1)");
-
-    private final By saveDescriptionButton = By.name("Submit");
-
-    private final By welcomeJenkinsTextMessage = By.xpath("//h1[text() = 'Welcome to Jenkins!']");
-
     public ProjectPanel getProjectPanel() {
+        if (projectPanel==null) projectPanel= new ProjectPanel(driver);
         return projectPanel;
     }
 
@@ -59,12 +55,9 @@ public class HomePage extends BasicPage {
         return new JenkinsApiPage(driver);
     }
 
-
     public String getDescriptionButtonText() {
         return driver.findElement(DescriptionButton).getText();
     }
-
-
 
     public boolean isProjectExist(String projectName) {
         return !driver.findElements(By.id("job_" + projectName)).isEmpty();
@@ -106,7 +99,6 @@ public class HomePage extends BasicPage {
     private void clickLink(String linkText) {
         driver.findElement(By.linkText(linkText)).click();
     }
-
 
 }
 

@@ -3,24 +3,22 @@ package pages.commonElements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import pages.HomePage;
-import support.JenkinsUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProjectPanel {
     private final WebDriver driver;
-    private final By projectLink = By.xpath("//a[@class='jenkins-table__link model-link inside']");
-    private final By dropDownProjectButton = By.xpath("//button[@class='jenkins-menu-dropdown-chevron' and contains(@data-href, 'job')]");
-    private final By deleteProjectButton = By.xpath("//button[contains(@href,'doDelete')]");
-    private final By renameProjectButton = By.partialLinkText("Rename");
-    private final By configureProjectButton = By.partialLinkText("Configure");
-    private final By changesButton = By.partialLinkText("Changes");
-    private final By workspaceButton = By.partialLinkText("Workspace");
-    private final By buildProjectButton = By.xpath("//button[contains(normalize-space(), 'Build')]");
+    private static final By projectLink = org.openqa.selenium.By.xpath("//a[@class='jenkins-table__link model-link inside']");
+    private static final By dropDownProjectButton = By.xpath("//button[@class='jenkins-menu-dropdown-chevron' and contains(@data-href, 'job')]");
+    private static final By deleteProjectButton = By.xpath("//button[contains(@href,'doDelete')]");
+    private static final By renameProjectButton = By.partialLinkText("Rename");
+    private static final By configureProjectButton = By.partialLinkText("Configure");
+    private static final By changesButton = By.partialLinkText("Changes");
+    private static final By workspaceButton = By.partialLinkText("Workspace");
+    private static final By buildProjectButton = By.xpath("//button[contains(normalize-space(), 'Build')]");
+
 
     public ProjectPanel(WebDriver driver) {
         this.driver = driver;

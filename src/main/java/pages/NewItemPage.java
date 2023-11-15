@@ -4,17 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class NewItemPage extends BasicPage {
+
+    private static final By inputNameField = By.id("name");
+
+    private static final By okButton = By.id("ok-button");
+
+    private static final By copyItemArea = By.className("item-copy");
+
+    private static final By helpMessage = By.xpath("//div[@class='add-item-name']//div[not(contains(@class,'disabled'))]");
+
     public NewItemPage(WebDriver driver) {
         super(driver);
     }
-
-    private final By inputNameField = By.id("name");
-
-    private final By okButton = By.id("ok-button");
-
-    private final By copyItemArea = By.className("item-copy");
-
-    private final By helpMessage = By.xpath("//div[@class='add-item-name']//div[not(contains(@class,'disabled'))]");
 
     public enum ItemTypes {
         FREESTYLE_PROJECT(org.openqa.selenium.By.xpath("//li[contains(@class, 'FreeStyleProject')]")),
