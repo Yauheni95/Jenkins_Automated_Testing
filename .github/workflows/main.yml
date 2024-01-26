@@ -1,18 +1,17 @@
-name: run-tests
+name: run unit tests of feature branches
+
 on:
-push:
-branches:
-- master
-
+  push:
+    branches: [master]
+  
+      
 jobs:
-
-run-tests:
-name: run-testss
-    runs-on: ubuntu-18.04
-
-steps:
-- name: Checkout
-  uses: actions/checkout@v4.1.1
-
-- name:tests
-run:mvn test
+  run-unit-test:
+    runs-on: ubuntu-latest
+    
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+        
+      - name: run unit test
+        run: mvn test
